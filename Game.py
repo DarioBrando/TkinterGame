@@ -1,8 +1,19 @@
 import tkinter as tk
 import random
 
-def randompos (top):
-    return random.randint(1, top-1)*step
+class Player():
+
+    def __init__(this, color):
+        this.x = this.randompos(N_X)
+        this.y = this.randompos(N_Y)
+        this.color = color
+
+    def draw(this):
+        canvas.create_oval((this.x, this.y),(this.x+step, this.y+step), fill=this.color)
+            
+        
+    def randompos (this, top):
+        return random.randint(1, top-1)*step
 
 master = tk.Tk()
 step = 60
@@ -10,12 +21,11 @@ N_X = 10
 N_Y = 10
 canvas = tk.Canvas(master, bg = 'blue', height = step*N_X, width = step*N_Y)
 
-player_pos = (randompos(N_X), randompos(N_Y))
-exit_pos =(randompos(N_X), randompos(N_Y)) 
+player = Player('green')
+player.draw();
+exit_g = Player('yellow')
+exit_g.draw()
 
-player = canvas.create_oval(player_pos, (player_pos[0]+step, player_pos[1]+step,), fill = 'green')
-
-exit_g = canvas.create_oval(exit_pos, (exit_pos[0]+step, exit_pos[1]+step,), fill = 'yellow')
 
 canvas.pack()
 master.mainloop()
