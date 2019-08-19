@@ -19,11 +19,11 @@ master = tk.Tk()
 step = 60
 N_X = 10
 N_Y = 10
-canvas = tk.Canvas(master, bg = 'blue', height = step*N_X, width = step*N_Y)
+canvas = tk.Canvas(master, bg = '#FF6347', height = step*N_X, width = step*N_Y)
 
-player = Player('green')
+player = Player('#FFDAB9')
 player.draw();
-exit_g = Player('yellow')
+exit_g = Player('#800000')
 exit_g.draw()
 
 
