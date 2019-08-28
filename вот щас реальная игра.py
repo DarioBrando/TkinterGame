@@ -1,10 +1,15 @@
 from tkinter import *
 from math import sqrt
 from random import shuffle
+from random import randint
+from time import sleep
+
 window = Tk()
 colors = ['blue', 'green', 'pink', 'purple', 'black', 'blue',]
 health = {'ammount': 3,'color':'green'}
+
 window.title('Bubble Game')
+
 c = Canvas(window, height = 768, width = 1366, bg = 'skyblue')
 c.pack()
 ship = c.create_polygon(5, 5, 5, 25, 30, 15, fill='green')
@@ -12,21 +17,53 @@ ship1 = c.create_oval(0, 0, 30, 30, outline = 'red')
 SHIP_R = 15
 c.move(ship, 683, 384)
 c.move(ship1, 683, 384)
-ship_spd = 10
+ship_spd = 20
+
 score = 0
+
 def ship_move(event):
     if event.keysym == 'Up': #вверх
         c.move(ship, 0, -ship_spd)
-        c.move(ship1, 0, -ship_sdp)
+        c.move(ship1, 0, -ship_spd)
     elif event.keysym == 'Down':#вниз
         c.move(ship, 0, ship_spd)
         c.move(ship1, 0, ship_spd)
     elif event.keysym == 'Left':#влево
         c.move(ship, -ship_spd, 0)
         c.move(ship1, -ship_spd, 0)
-    elif event.keysym == 'c'+'h'+'e'+'a'+'t':#чит
-        score += 10000
-c.bind_all('<Key>', move_ship)
+    elif event.keysym == 'Right':#вправо
+        c.move(ship, ship_spd, 0)
+        c.move(ship1, ship_spd, 0)
+c.bind_all('<Key>', ship_move)
+
+#def cheat(event):
+    #print('1234')
+    #master.clipboard_append('+10000 point!')
+    #score += 10000
+#c.bind_all('<Key>', ship_move)
+
+bub_id = list()
+bub_r = list()
+bub_sspeed = list()
+bub_id1 = list()
+bub_r1 = list()
+bub_speed1 = list()
+min_bub_r = 13
+max_bub_r = 32
+max_bub_spd = 12
+def new_bubble():
+    x = 1366 + 100
+    y = randint(0, 768)
+    r = randint(min_bub_r, max_bub_r)
+    id1 = c.create_oval(x-r, y-r)
+    bub_id1.append(id1)
+    bub_r1.append(r)
+    bub_speed1.append(randint(6, max_bub_speed))
+    
+    
+
+
+
     
         
     
