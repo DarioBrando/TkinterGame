@@ -5,7 +5,7 @@ from random import randint
 from time import sleep
 
 window = Tk()
-colors = ['blue', 'green', 'pink', 'purple', 'black', 'blue',]
+colors = ['blue', 'green', 'pink', 'purple', 'black',]
 health = {'ammount': 3,'color':'green'}
 
 window.title('Bubble Game')
@@ -54,7 +54,25 @@ def new_bubble():
     id1 = c.create_oval(x-r, y-r, x+r, y+r, outline='white', fill = 'lightblue')
     bub_id.append(id1)
     bub_r.append(r)
-    bub_speed.append(randint(6, max_bub_speed))
+    bub_speed.append(randint(6, max_bub_spd))
+def new_bubble1():
+    x = 1366 + 100
+    y = randint(0, 768)
+    r = randint(min_bub_r, max_bub_r)
+    id1 = c.create_oval(x - r, y - r, x + r, y + r, outline = 'black', fill = 'red')
+    bub_id1.append(id1)
+    bub_r1.append(r)
+    bub_speed1.append(randint(7, max_bub_spd))
+def new_bubble_r():
+    x = 1366 + 100
+    y = randint(0, 768)
+    r = randint(min_bub_r, max_bub_r)
+    id1 = c.create_oval(x - r, y - r, x + r, y + r, outline = 'white', fill=colors[0])
+    bub_id.append(id1)
+    bub_r.append(r)
+    bub_speed.append(randint(7, max_bub_spd))
+def moving():
+    
     
     
 
