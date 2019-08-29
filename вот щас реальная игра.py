@@ -12,11 +12,13 @@ c.pack()
 ship_id = c.create_polygon(5, 5, 5, 25, 30, 15, fill='green')
 ship_id2 = c.create_oval(0, 0, 30, 30, outline = 'red')
 SHIP_R = 15
-c.move(ship_id, 683, 384)
-c.move(ship_id2, 683, 384)
+MID_X = WIDTH / 2
+MID_Y = HEIGHT / 2
+c.move(ship_id, MID_X, MID_Y)
+c.move(ship_id2, MID_X, MID_Y)
 ship_spd = 10
 score = 0
-def ship_move(event):
+def move_ship(event):
     if event.keysym == 'Up': #вверх
         c.move(ship_id, 0, -ship_spd)
         c.move(ship_id2, 0, -ship_spd)
@@ -31,46 +33,47 @@ def ship_move(event):
         c.move(ship_id2, ship_spd, 0)
     elif event.keysym == 'c':#чит
         score += 10000        
-c.bind_all('<Key>', ship_move)
+c.bind_all('<Key>', move_ship)
 from random import randint
 bub_id = list()
 bub_r = list()
 bub_speed = list()
-bub_id1 = list()
-bub_r1 = list()
-bub_speed1 = list()
+bub_id_e = list()
+bub_r_e = list()
+bub_speed_e = list()
 min_bub_r = 10
 max_bub_r = 30
 max_bub_spd = 10
-def new_bubble():
-    x = 1366 + 100
-    y = randint(0, 768)
+gap = 100
+def create_bubble():
+    x = WIDTH + gap
+    y = randint(0, HEIGTH)
     r = randint(min_bub_r, max_bub_r)
     id1 = c.create_oval(x-r, y-r, x+r, y+r, outline='white', fill = 'lightblue')
     bub_id.append(id1)
     bub_r.append(r)
-    bub_speed.append(randint(6, max_bub_spd))    
-def new_bubble1():
-    x = 1366 + 100
-    y = randint(0, 768)
+    bub_speed.append(randint(5, max_bub_spd))    
+def create_bubble_e():
+    x = WIDTH + gap
+    y = randint(0, HEIGHT)
     r = randint(min_bub_r, max_bub_r)
     id1 = c.create_oval(x - r, y - r, x + r, y + r, outline = 'black', fill = 'red')
-    bub_id1.append(id1)
-    bub_r1.append(r)
-    bub_speed1.append(randint(7, max_bub_spd))    
+    bub_id_e.append(id1)
+    bub_r_e.append(r)
+    bub_speed_e.append(randint(6, max_bub_spd))    
 def new_bubble_r():
-    x = 1366 + 100
-    y = randint(0, 768)
+    x = WIDTH + gap
+    y = randint(0, HEIGHT)
     r = randint(min_bub_r, max_bub_r)
     id1 = c.create_oval(x - r, y - r, x + r, y + r, outline = 'white', fill=colors[0])
     bub_id.append(id1)
     bub_r.append(r)
-    bub_speed.append(randint(7, max_bub_spd))   
-def moving():
+    bub_speed.append(randint(6, max_bub_spd))   
+def move_bubbles():
     for i in range(len(bub_id)):
         c.move(bub_id[i], -bub_speed[i], 0)
-    for i in range(len(bub_id1)):
-        c.move(bub_id1[i], -bub_speed1[i], 0)
+    for i in range(len(bub_id_e)):
+        c.move(bub_id_e[i], -bub_speed_e[i], 0)
 from time import sleep, time
 bub_chance = 30
 def coords(id_num):
