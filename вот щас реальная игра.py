@@ -146,7 +146,8 @@ while True:
     shuffle(colors)
     sleep(0.01)
 
-        
+
+#игра закончена        
         
     
     
