@@ -4,8 +4,11 @@ from random import shuffle
 HEIGHT = 768
 WIDTH = 1366
 window = Tk()
-colors = ['darkred', 'blue', 'green', 'pink', 'purple', 'lime']
-health = {'ammount': 3,'color':'green'}
+colors = ['darkred', 'green', 'blue', 'purple', 'pink', 'lime']
+health = {
+    'ammount': 3,
+    'color':'green'
+}
 window.title('Bubble Game')
 c = Canvas(window, height = HEIGHT, width = WIDTH, bg = 'skyblue')
 c.pack()
@@ -61,7 +64,7 @@ def create_bubble_e():
     bub_id_e.append(id1)
     bub_r_e.append(r)
     bub_speed_e.append(randint(6, max_bub_spd))    
-def new_bubble_r():
+def create_bubble_r():
     x = WIDTH + gap
     y = randint(0, HEIGHT)
     r = randint(min_bub_r, max_bub_r)
@@ -126,7 +129,7 @@ while True:
     if randint(1, evil_bub) == 1:
         create_bubble_e()
     if randint(1, 100) == 1:
-        new_bubble_r()        
+        create_bubble_r()        
     move_bubbles()
     collision_e()
     clean()
