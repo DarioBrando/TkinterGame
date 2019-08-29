@@ -1,11 +1,13 @@
 from tkinter import *
 from math import sqrt
 from random import shuffle
+HEIGHT = 768
+WIDTH = 1366
 window = Tk()
-colors = ['darkred', 'blue', 'green', 'pink', 'purple', 'lime',]
+colors = ['darkred', 'blue', 'green', 'pink', 'purple', 'lime']
 health = {'ammount': 3,'color':'green'}
 window.title('Bubble Game')
-c = Canvas(window, height = 768, width = 1366, bg = 'skyblue')
+c = Canvas(window, height = HEIGHT, width = WIDTH, bg = 'skyblue')
 c.pack()
 ship_id = c.create_polygon(5, 5, 5, 25, 30, 15, fill='green')
 ship_id2 = c.create_oval(0, 0, 30, 30, outline = 'red')
@@ -37,9 +39,9 @@ bub_speed = list()
 bub_id1 = list()
 bub_r1 = list()
 bub_speed1 = list()
-min_bub_r = 13
-max_bub_r = 32
-max_bub_spd = 12
+min_bub_r = 10
+max_bub_r = 30
+max_bub_spd = 10
 def new_bubble():
     x = 1366 + 100
     y = randint(0, 768)
@@ -69,7 +71,8 @@ def moving():
         c.move(bub_id[i], -bub_speed[i], 0)
     for i in range(len(bub_id1)):
         c.move(bub_id1[i], -bub_speed1[i], 0)
-bub_chance = 40
+from time import sleep, time
+bub_chance = 30
 def coords(id_num):
     pos = c.coords(id_num)
     x = (pos[0] + pos[2]) / 2
@@ -92,28 +95,29 @@ def distance(id1, id2):
 def collision():
     points = 0
     for bub in range(len(bub_id) -1, -1, -1):
-        if distance(ship1, bub_id[bub]) < (SHIP_R + bub_r[bub]):
+        if distance(ship_id2, bub_id[bub]) < (SHIP_R + bub_r[bub]):
             points += (bub_r[bub] + bub_speed[bub])
             minusbubble(bub)
     return points
-def Allclean():
+def cleanAll():
     for i in range(len(bub_id), -1, -1, -1):
         x, y = coords(bub_id[i])
         minusbubble(i)
 def collision1():
     for bub in range(len(bub_id1) -1, -1, -1):
-        if distance(ship1, bub_id1[bub]) < (SHIP_R + bub_r1[bub]):
+        if distance(ship_id2, bub_id1[bub]) < (SHIP_R + bub_r1[bub]):
             window.destroy()
             print('Вы были убиты красным шаром')
             print('У вас', score, 'очков!')
             sleep(100)
-c.create_text(70, 50, text='SCORE', fill='white')
-st = c.create_text(70, 70, fill='white')
-c.create_text(120, 50, text='TIME', fill='white')
-tt = c.create_text(120, 70, fill='white')
+c.create_text(50, 30, text='SCORE', fill='white')
+st = c.create_text(50, 50, fill='white')
+c.create_text(100, 30, text='TIME', fill='white')
+tt = c.create_text(100, 50, fill='white')
 def show(score):
     c.itemconfig(st, text=str(score))
-bad_bub = 60
+bad_bub = 50
+#самоец главное
 while True:
     if randint(1, bub_chance) == 1:
         new_bubble()
@@ -126,11 +130,11 @@ while True:
     clean()
     score += collision()
     if score >= 400:
-        bad_bubble = 35
-        bub_chance = 20
+        bad_bubble = 40
+        bub_chance = 25
         if score >= 1000:
-            bad_bubble = 25
-            bub_chance = 15
+            bad_bubble = 30
+            bub_chance = 20
         show(score)
         window.update()
         shuffle(colors)
