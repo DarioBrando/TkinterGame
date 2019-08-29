@@ -2,7 +2,7 @@ from tkinter import *
 from math import sqrt
 from random import shuffle
 from random import randint
-from time import sleep
+from time import sleep, time
 
 window = Tk()
 colors = ['blue', 'green', 'pink', 'purple', 'black',]
@@ -47,6 +47,7 @@ bub_speed1 = list()
 min_bub_r = 13
 max_bub_r = 32
 max_bub_spd = 12
+
 def new_bubble():
     x = 1366 + 100
     y = randint(0, 768)
@@ -55,6 +56,7 @@ def new_bubble():
     bub_id.append(id1)
     bub_r.append(r)
     bub_speed.append(randint(6, max_bub_spd))
+    
 def new_bubble1():
     x = 1366 + 100
     y = randint(0, 768)
@@ -63,6 +65,7 @@ def new_bubble1():
     bub_id1.append(id1)
     bub_r1.append(r)
     bub_speed1.append(randint(7, max_bub_spd))
+    
 def new_bubble_r():
     x = 1366 + 100
     y = randint(0, 768)
@@ -71,7 +74,39 @@ def new_bubble_r():
     bub_id.append(id1)
     bub_r.append(r)
     bub_speed.append(randint(7, max_bub_spd))
+    
 def moving():
+    for i in range(len(bub_id)):
+        c.move(bub_id[i], -bub_speed[i], 0)
+    for i in range(len(bub_id1)):
+        c.move(bub_id1[i], -bub_speed1[i], 0)
+
+bub_chance = 40
+
+def coords(id_num):
+    pos = c.coords(id_num)
+    x = (pos[0] + pos[2]) / 2
+    y = (pos[1] + pos[3]) / 2
+    return x, y
+
+def minusbubble(i):
+    del bub_r[i]
+    del bub_speed[i]
+    c.delete(bub_id[i])
+    del bub_id[i]
+
+def clean():
+    for i in range(len(bub_id) -1, -1, -1):
+        x, y = coords(bub_id[i])
+        if x < -100:
+            minusbubble(i)
+
+def distance(id1, id2):
+    x1, y1 = coords(id1)
+    x2, y2 = coords(id2)
+              
+
+    
     
     
     
