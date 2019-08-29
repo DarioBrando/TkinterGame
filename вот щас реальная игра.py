@@ -104,6 +104,21 @@ def clean():
 def distance(id1, id2):
     x1, y1 = coords(id1)
     x2, y2 = coords(id2)
+    return sqrt((x2 - x1)**2 + (y2 - y1)**2)
+
+def collision():
+    points = 0
+    for bub in range(len(bub_id) -1, -1, -1):
+        if distance(ship_id2, bub_id[bub]) < (SHIP_R + bub_r[bub]):
+            points += (bub_r[bub] + bub_speed[bub])
+            minusbubble(bub)
+    return points
+
+def Allclean():
+    for i in range(len, -1, -1, -1):
+        x, y = coords(bub_id[i])
+        minusbubble()
+            
               
 
     
