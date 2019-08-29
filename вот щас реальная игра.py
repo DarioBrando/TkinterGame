@@ -115,9 +115,9 @@ def collision():
     return points
 
 def Allclean():
-    for i in range(len, -1, -1, -1):
+    for i in range(len(bub_id), -1, -1, -1):
         x, y = coords(bub_id[i])
-        minusbubble()
+        minusbubble(i)
             
               
 
