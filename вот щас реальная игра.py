@@ -118,7 +118,22 @@ def Allclean():
     for i in range(len(bub_id), -1, -1, -1):
         x, y = coords(bub_id[i])
         minusbubble(i)
-            
+
+def collision1():
+    for bub in range(len(bub_id1) -1, -1, -1):
+        if distance(ship_id2, bub_is1[bub]) < (SHIP_R + bub_r1[bub]):
+            window.destroy()
+            print('Вы были убиты красным шаром')
+            print('У вас', score, 'очков!')
+            sleep(100)
+
+c.create_text(70, 50, text='SCORE', fill='white')
+st = c.create_text(70, 70, fill='white')
+c.create_text(120, 50, text='TIME', fill='white')
+tt = c.create_text(120, 70, fill='white')
+
+def show(score):
+    pass
               
 
     
