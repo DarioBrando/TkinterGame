@@ -121,7 +121,7 @@ def Allclean():
 
 def collision1():
     for bub in range(len(bub_id1) -1, -1, -1):
-        if distance(ship_id2, bub_is1[bub]) < (SHIP_R + bub_r1[bub]):
+        if distance(ship_id2, bub_id1[bub]) < (SHIP_R + bub_r1[bub]):
             window.destroy()
             print('Вы были убиты красным шаром')
             print('У вас', score, 'очков!')
@@ -133,7 +133,38 @@ c.create_text(120, 50, text='TIME', fill='white')
 tt = c.create_text(120, 70, fill='white')
 
 def show(score):
-    pass
+    c.itemconfig(st, text=str(score))
+
+bad_bub = 60
+
+while True:
+    if randint(1, bub_chance) == 1:
+        new_bubble()
+    if randint(1, bad_bub) == 1:
+        new_bubble1()
+    if randint(1, 100) == 1:
+        new_bubble_r()
+        
+    moving()
+    collision1()
+    clean()
+    score += collision()
+    if score >= 400:
+        bad_bubble = 35
+        bub_chance = 20
+
+        if score >= 1000:
+            bad_bubble = 25
+            bub_chance = 15
+
+        show(score)
+        window.update()
+        shuffle(colors)
+        sleep(0.01)
+        
+        
+    
+    
               
 
     
