@@ -1,15 +1,11 @@
 from tkinter import *
 from math import sqrt
 from random import shuffle
-import winsound
 HEIGHT = 768
 WIDTH = 1366
 window = Tk()
 colors = ["darkred", "green", "blue", "purple", "pink", "lime"]
-health = {
-    "ammount" : 3,
-    "color": "green"
-}
+
 window.title("Bubble Game")
 c = Canvas(window, width=WIDTH, height=HEIGHT, bg="skyblue")
 c.pack()
